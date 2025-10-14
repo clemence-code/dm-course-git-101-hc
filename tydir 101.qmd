@@ -1,0 +1,27 @@
+---
+title: "tydir 101"
+author: "Clémence HUANG"
+format: html
+editor: visual
+---
+```{r}
+here::i_am("dm-course-git-101-hc.Rproj")
+library(here)
+```
+
+```{r}
+data("EuStockMarkets")
+```
+
+```{r}
+library(ggplot2)
+```
+
+## Display one time series
+```{r}
+ggplot(EuStockMarkets,aes(y=DAX,x=time(EuStockMarkets))) +
+  geom_line()
+```
+
+
+
