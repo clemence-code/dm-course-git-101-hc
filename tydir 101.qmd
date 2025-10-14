@@ -15,6 +15,8 @@ data("EuStockMarkets")
 
 ```{r}
 library(ggplot2)
+library(tidyr)
+library(dplyr)
 ```
 
 ## Display one time series
@@ -46,7 +48,23 @@ ggplot(EuStockMarkets,aes(y=CAC,x=date)) +
 ### Poor man's solution
 ```{r}
 ggplot(EuStockMarkets,aes(y=CAC,x=date)) +
-  geom_line() +
-  geom_line(mapping=aes(y=DAX))
+  geom_line(color="skyblue") +
+  geom_line(mapping=aes(y=DAX),color="salmon")
+```
+
+### Tidyr solution
+```{r}
+EuStockMarkets |>
+  pivot_longer(!date,names_to ="index") |>
+  slice_head(n = 10) |>
+  knitr::kable()
+
+```
+
+```{r}
+EuStockMarkets |>
+  pivot_longer(!date,names_to ="index") |>
+  ggplot(aes(x=date,y=value,color = index)) +
+  geom_line()
 ```
 
