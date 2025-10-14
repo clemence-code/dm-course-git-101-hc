@@ -36,3 +36,17 @@ ggplot(EuStockMarkets,aes(y=DAX,x=date)) +
   geom_line()
 ```
 
+```{r}
+ggplot(EuStockMarkets,aes(y=CAC,x=date)) +
+  geom_line()
+```
+
+## Graphical reprensentation
+
+### Poor man's solution
+```{r}
+ggplot(EuStockMarkets,aes(y=CAC,x=date)) +
+  geom_line() +
+  geom_line(mapping=aes(y=DAX))
+```
+
