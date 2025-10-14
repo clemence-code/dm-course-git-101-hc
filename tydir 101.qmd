@@ -23,5 +23,16 @@ ggplot(EuStockMarkets,aes(y=DAX,x=time(EuStockMarkets))) +
   geom_line()
 ```
 
+```{r}
+EuStockMarkets <-
+  EuStockMarkets |> 
+  as_tibble() |>
+  mutate(date = time(EuStockMarkets))
+```
 
+
+```{r}
+ggplot(EuStockMarkets,aes(y=DAX,x=date)) +
+  geom_line()
+```
 
