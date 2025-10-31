@@ -5,66 +5,68 @@ format: html
 editor: visual
 ---
 ```{r}
+#| message: false
 here::i_am("dm-course-git-101-hc.Rproj")
 library(here)
 ```
 
 ```{r}
+#| message: false
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+```
+
+
+```{r}
 data("EuStockMarkets")
 ```
 
-```{r}
-library(ggplot2)
-library(tidyr)
-library(dplyr)
-```
+## Displaying one time series
 
-## Display one time series
 ```{r}
-ggplot(EuStockMarkets,aes(y=DAX,x=time(EuStockMarkets))) +
+ggplot(EuStockMarkets, aes(x=time(EuStockMarkets), y=DAX)) +
   geom_line()
 ```
 
 ```{r}
-EuStockMarkets <-
+EuStockMarkets <- 
   EuStockMarkets |> 
-  as_tibble() |>
-  mutate(date = time(EuStockMarkets))
+    as_tibble() |>  ## could be as.data.frame
+    mutate(date = as.numeric(time(EuStockMarkets)))
 ```
 
 
 ```{r}
-ggplot(EuStockMarkets,aes(y=DAX,x=date)) +
+ggplot(EuStockMarkets, aes(x=date, y=DAX)) +
   geom_line()
 ```
-
 ```{r}
-ggplot(EuStockMarkets,aes(y=CAC,x=date)) +
+ggplot(EuStockMarkets, aes(x=date, y=CAC)) +
   geom_line()
 ```
 
-## Graphical reprensentation
+## Two indexes on the same graphical representation ?
 
 ### Poor man's solution
-```{r}
-ggplot(EuStockMarkets,aes(y=CAC,x=date)) +
-  geom_line(color="skyblue") +
-  geom_line(mapping=aes(y=DAX),color="salmon")
-```
 
+```{r}
+ggplot(EuStockMarkets, aes(x=date, y=CAC)) +
+  geom_line(colour = "steelblue") +
+  geom_line(mapping=aes(y=DAX), colour = "salmon")
+```
 ### Tidyr solution
+
 ```{r}
 EuStockMarkets |>
-  pivot_longer(!date,names_to ="index") |>
-  slice_head(n = 10) |>
+  pivot_longer(!date, names_to = "index") |>
+  slice_head(n=10) |>
   knitr::kable()
-
 ```
 
 ```{r}
 EuStockMarkets |>
-  pivot_longer(!date,names_to ="index") |>
-  ggplot(aes(x=date,y=value,color = index)) +
+  pivot_longer(!date, names_to = "index") |>
+  ggplot(aes(x=date, y=value, colour=index)) +
   geom_line()
 ```
-
