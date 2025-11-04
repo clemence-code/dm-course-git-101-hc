@@ -107,39 +107,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">i_am</span>(<span class="st">"dm-course-git-101-hc.Rproj"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>here() starts at C:/Users/cleme/OneDrive/Documents/Clem's/7. M1IQUE/Data management/1. Cours/Séance 4 141025/dm-course-git-101-hc</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">i_am</span>(<span class="st">"dm-course-git-101-hc.Rproj"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"EuStockMarkets"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attachement du package : 'dplyr'</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"EuStockMarkets"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Les objets suivants sont masqués depuis 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Les objets suivants sont masqués depuis 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-</div>
-<section id="display-one-time-series" class="level2">
-<h2 class="anchored" data-anchor-id="display-one-time-series">Display one time series</h2>
+<section id="displaying-one-time-series" class="level2">
+<h2 class="anchored" data-anchor-id="displaying-one-time-series">Displaying one time series</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(EuStockMarkets,<span class="fu">aes</span>(<span class="at">y=</span>DAX,<span class="at">x=</span><span class="fu">time</span>(EuStockMarkets))) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(EuStockMarkets, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">time</span>(EuStockMarkets), <span class="at">y=</span>DAX)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Don't know how to automatically pick scale for object of type &lt;ts&gt;. Defaulting
 to continuous.</code></pre>
@@ -153,18 +136,14 @@ to continuous.</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>EuStockMarkets <span class="ot">&lt;-</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  EuStockMarkets <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">time</span>(EuStockMarkets))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>EuStockMarkets <span class="ot">&lt;-</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  EuStockMarkets <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span>  <span class="do">## could be as.data.frame</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.numeric</span>(<span class="fu">time</span>(EuStockMarkets)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(EuStockMarkets,<span class="fu">aes</span>(<span class="at">y=</span>DAX,<span class="at">x=</span>date)) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Don't know how to automatically pick scale for object of type &lt;ts&gt;. Defaulting
-to continuous.</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(EuStockMarkets, <span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>DAX)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -174,12 +153,8 @@ to continuous.</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(EuStockMarkets,<span class="fu">aes</span>(<span class="at">y=</span>CAC,<span class="at">x=</span>date)) <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Don't know how to automatically pick scale for object of type &lt;ts&gt;. Defaulting
-to continuous.</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(EuStockMarkets, <span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>CAC)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -189,24 +164,351 @@ to continuous.</code></pre>
 </div>
 </div>
 </section>
-<section id="graphical-reprensentation" class="level2">
-<h2 class="anchored" data-anchor-id="graphical-reprensentation">Graphical reprensentation</h2>
+<section id="two-indexes-on-the-same-graphical-representation" class="level2">
+<h2 class="anchored" data-anchor-id="two-indexes-on-the-same-graphical-representation">Two indexes on the same graphical representation ?</h2>
 <section id="poor-mans-solution" class="level3">
 <h3 class="anchored" data-anchor-id="poor-mans-solution">Poor man’s solution</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(EuStockMarkets,<span class="fu">aes</span>(<span class="at">y=</span>CAC,<span class="at">x=</span>date)) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>DAX))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Don't know how to automatically pick scale for object of type &lt;ts&gt;. Defaulting
-to continuous.</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(EuStockMarkets, <span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>CAC)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">y=</span>DAX), <span class="at">colour =</span> <span class="st">"salmon"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="tydir-101_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
+</div>
+</div>
+</section>
+<section id="tidyr-solution" class="level3">
+<h3 class="anchored" data-anchor-id="tidyr-solution">Tidyr solution</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>EuStockMarkets <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>date, <span class="at">names_to =</span> <span class="st">"index"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">date</th>
+<th style="text-align: left;">index</th>
+<th style="text-align: right;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1991.496</td>
+<td style="text-align: left;">DAX</td>
+<td style="text-align: right;">1628.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.496</td>
+<td style="text-align: left;">SMI</td>
+<td style="text-align: right;">1678.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1991.496</td>
+<td style="text-align: left;">CAC</td>
+<td style="text-align: right;">1772.80</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.496</td>
+<td style="text-align: left;">FTSE</td>
+<td style="text-align: right;">2443.60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1991.500</td>
+<td style="text-align: left;">DAX</td>
+<td style="text-align: right;">1613.63</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.500</td>
+<td style="text-align: left;">SMI</td>
+<td style="text-align: right;">1688.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1991.500</td>
+<td style="text-align: left;">CAC</td>
+<td style="text-align: right;">1750.50</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.500</td>
+<td style="text-align: left;">FTSE</td>
+<td style="text-align: right;">2460.20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1991.504</td>
+<td style="text-align: left;">DAX</td>
+<td style="text-align: right;">1606.51</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.504</td>
+<td style="text-align: left;">SMI</td>
+<td style="text-align: right;">1678.60</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>EuStockMarkets <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>date, <span class="at">names_to =</span> <span class="st">"index"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>value, <span class="at">colour=</span>index)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tydir-101_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="more-pivoting" class="level1">
+<h1>More pivoting</h1>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>EuStockMarkets <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>date,<span class="at">names_to=</span><span class="st">"index"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">date</th>
+<th style="text-align: left;">index</th>
+<th style="text-align: right;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1991.496</td>
+<td style="text-align: left;">DAX</td>
+<td style="text-align: right;">1628.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.496</td>
+<td style="text-align: left;">SMI</td>
+<td style="text-align: right;">1678.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1991.496</td>
+<td style="text-align: left;">CAC</td>
+<td style="text-align: right;">1772.80</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.496</td>
+<td style="text-align: left;">FTSE</td>
+<td style="text-align: right;">2443.60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1991.500</td>
+<td style="text-align: left;">DAX</td>
+<td style="text-align: right;">1613.63</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.500</td>
+<td style="text-align: left;">SMI</td>
+<td style="text-align: right;">1688.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1991.500</td>
+<td style="text-align: left;">CAC</td>
+<td style="text-align: right;">1750.50</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.500</td>
+<td style="text-align: left;">FTSE</td>
+<td style="text-align: right;">2460.20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1991.504</td>
+<td style="text-align: left;">DAX</td>
+<td style="text-align: right;">1606.51</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.504</td>
+<td style="text-align: left;">SMI</td>
+<td style="text-align: right;">1678.60</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>EuStockMarkets <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(DAX<span class="sc">|</span>SMI) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">CAC</th>
+<th style="text-align: right;">FTSE</th>
+<th style="text-align: right;">date</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1772.8</td>
+<td style="text-align: right;">2443.6</td>
+<td style="text-align: right;">1991.496</td>
+<td style="text-align: left;">DAX</td>
+<td style="text-align: right;">1628.75</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1772.8</td>
+<td style="text-align: right;">2443.6</td>
+<td style="text-align: right;">1991.496</td>
+<td style="text-align: left;">SMI</td>
+<td style="text-align: right;">1678.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1750.5</td>
+<td style="text-align: right;">2460.2</td>
+<td style="text-align: right;">1991.500</td>
+<td style="text-align: left;">DAX</td>
+<td style="text-align: right;">1613.63</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1750.5</td>
+<td style="text-align: right;">2460.2</td>
+<td style="text-align: right;">1991.500</td>
+<td style="text-align: left;">SMI</td>
+<td style="text-align: right;">1688.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1718.0</td>
+<td style="text-align: right;">2448.2</td>
+<td style="text-align: right;">1991.504</td>
+<td style="text-align: left;">DAX</td>
+<td style="text-align: right;">1606.51</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1718.0</td>
+<td style="text-align: right;">2448.2</td>
+<td style="text-align: right;">1991.504</td>
+<td style="text-align: left;">SMI</td>
+<td style="text-align: right;">1678.60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1708.1</td>
+<td style="text-align: right;">2470.4</td>
+<td style="text-align: right;">1991.508</td>
+<td style="text-align: left;">DAX</td>
+<td style="text-align: right;">1621.04</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1708.1</td>
+<td style="text-align: right;">2470.4</td>
+<td style="text-align: right;">1991.508</td>
+<td style="text-align: left;">SMI</td>
+<td style="text-align: right;">1684.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1723.1</td>
+<td style="text-align: right;">2484.7</td>
+<td style="text-align: right;">1991.512</td>
+<td style="text-align: left;">DAX</td>
+<td style="text-align: right;">1618.16</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1723.1</td>
+<td style="text-align: right;">2484.7</td>
+<td style="text-align: right;">1991.512</td>
+<td style="text-align: left;">SMI</td>
+<td style="text-align: right;">1686.60</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="rendering-on-rows" class="level2">
+<h2 class="anchored" data-anchor-id="rendering-on-rows">Rendering on rows</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>EuStockMarkets <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>FTSE) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>date) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 3
+    date name  value
+   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
+ 1 1991. DAX   1629.
+ 2 1991. SMI   1678.
+ 3 1991. CAC   1773.
+ 4 1992. DAX   1614.
+ 5 1992. SMI   1688.
+ 6 1992. CAC   1750.
+ 7 1992. DAX   1607.
+ 8 1992. SMI   1679.
+ 9 1992. CAC   1718 
+10 1992. DAX   1621.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>EuStockMarkets <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>FTSE) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>date) <span class="sc">|&gt;</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_stock =</span> <span class="fu">mean</span>(value),<span class="at">.by =</span> date) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">date</th>
+<th style="text-align: right;">avg_stock</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1991.496</td>
+<td style="text-align: right;">1693.217</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.500</td>
+<td style="text-align: right;">1684.210</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1991.504</td>
+<td style="text-align: right;">1667.703</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.508</td>
+<td style="text-align: right;">1671.080</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1991.512</td>
+<td style="text-align: right;">1675.953</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.515</td>
+<td style="text-align: right;">1665.503</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1991.519</td>
+<td style="text-align: right;">1682.717</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.523</td>
+<td style="text-align: right;">1700.390</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1991.527</td>
+<td style="text-align: right;">1695.657</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1991.531</td>
+<td style="text-align: right;">1705.497</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>

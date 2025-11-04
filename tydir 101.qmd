@@ -4,6 +4,7 @@ author: "Clémence HUANG"
 format: html
 editor: visual
 ---
+
 ```{r}
 #| message: false
 here::i_am("dm-course-git-101-hc.Rproj")
@@ -16,7 +17,6 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 ```
-
 
 ```{r}
 data("EuStockMarkets")
@@ -36,11 +36,11 @@ EuStockMarkets <-
     mutate(date = as.numeric(time(EuStockMarkets)))
 ```
 
-
 ```{r}
 ggplot(EuStockMarkets, aes(x=date, y=DAX)) +
   geom_line()
 ```
+
 ```{r}
 ggplot(EuStockMarkets, aes(x=date, y=CAC)) +
   geom_line()
@@ -55,6 +55,7 @@ ggplot(EuStockMarkets, aes(x=date, y=CAC)) +
   geom_line(colour = "steelblue") +
   geom_line(mapping=aes(y=DAX), colour = "salmon")
 ```
+
 ### Tidyr solution
 
 ```{r}
@@ -69,4 +70,33 @@ EuStockMarkets |>
   pivot_longer(!date, names_to = "index") |>
   ggplot(aes(x=date, y=value, colour=index)) +
   geom_line()
+```
+# More pivoting
+```{r}
+EuStockMarkets |>
+  pivot_longer(!date,names_to="index") |>
+  slice_head(n=10) |>
+  knitr::kable()
+```
+
+```{r}
+EuStockMarkets |>
+  pivot_longer(DAX|SMI) |>
+  slice_head(n=10) |>
+  knitr::kable()
+```
+## Rendering on rows
+```{r}
+EuStockMarkets |>
+  select(!FTSE) |>
+  pivot_longer(!date) |> slice_head(n=10)
+```
+
+```{r}
+EuStockMarkets |>
+  select(!FTSE) |>
+  pivot_longer(!date) |> 
+  summarize(avg_stock = mean(value),.by = date) |>
+  slice_head(n=10) |>
+  knitr::kable()
 ```
