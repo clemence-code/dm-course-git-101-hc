@@ -100,3 +100,47 @@ EuStockMarkets |>
   slice_head(n=10) |>
   knitr::kable()
 ```
+
+Alternative `rowwise`
+```{r}
+EuStockMarkets |>
+  select(!FTSE) |>
+  rowwise() |>
+  summarise(date,avg_stock = mean(DAX,SMI,CAC))
+```
+
+## Reverse operation : pivot to a wider format
+```{r}
+EuLong <-
+  EuStockMarkets |>
+  pivot_longer(!date)
+```
+
+```{r}
+EuLong |>
+  pivot_wider() |>
+  slice_head(n=10) |>
+  knitr::kable()
+```
+
+```{r}
+EuLong |>
+  pivot_wider(id_cols=date)
+```
+
+```{r}
+data("diamonds")
+```
+
+```{r}
+dgroup <-
+  diamonds |>
+  summarise(count=n(),median_price = median(price),.by=c(cut,color))
+```
+
+```{r}
+dgroup |>
+  select(!count) |> # here do not need select because specifying one column
+  pivot_wider(id_cols = cut,names_from = color, values_from = median_price)
+```
+
