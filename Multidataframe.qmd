@@ -1,0 +1,109 @@
+---
+title: "Multidataframe"
+author: "Clémence HUANG"
+format: html
+editor: visual
+---
+
+```{r}
+#| message: false
+here::i_am("dm-course-git-101-hc.Rproj")
+library(here)
+```
+
+```{r}
+#| message: false
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(vroom)
+```
+
+Tidy data
+1. A data frame contain only statistical units of a specific type
+2. Each row is a statistical unit
+A database = a collection of related dataframes
+Keys --> unique in the dataframe
+
+## Data Loading
+```{r}
+planets <- vroom(here("data","LISTPLANETS.csv"))
+stars <- vroom(here("data","List_stars.csv"))
+```
+
+```{r}
+sum_to_earth <- 333000
+```
+
+## Planet oriented analyses
+We look for the planet that has the largest ratio between its mass and the mass of its star. We cannot do that using the planet data frame only, we need to join it with the stars dataframe.
+
+### Innerjoin
+In an inner join, we keep only matches between the two data frames (according to the `join_by` variables).
+```{r}
+planet_star <- inner_join(planets,stars,join_by(Star_idx))
+```
+
+```{r}
+planet_star |>
+  mutate(mass_ratio = MASS/`STAR MASS`*sum_to_earth) |>
+  slice_max(mass_ratio) |>
+  select(plnaet = p_name,star=star_name, mass_ratio)
+```
+
+### Semi and Antijoin
+```{r}
+planet_without_star <- anti_join(planets,stars,join_by(Star_idx))
+star_without_planet <- anti_join(stars,planets,join_by(Star_idx))
+```
+
+```{r}
+stars_with_planets <- semi_join(stars,planets,join_by(Star_idx))
+```
+
+We have `r nrow(planet_without_star)` planets wirthout a corresponding star in the database and `r nrow(star_without_planet)` stars without planets in the database. 
+
+
+### Left and right join
+
+```{r}
+all_planets <- left_join(planets, stars, join_by(Star_idx))
+all_stars <- right_join(planets,stars, join_by(Star_idx))
+all_all <- full_join(planets,stars, join_by(Star_idx))
+```
+
+## Star oriented analysis
+If a star does not appear in the planet data frame, this means that this star has no associated habitable planet. We want to compute the distribution of the average number of habitable planets per star. 
+
+Here we are missing the stars without planet. 
+
+```{r}
+planet_star  |> 
+  summarise(n=n(),.by=Star_idx) |>
+  ggplot(aes(x=n)) +
+  geom_bar()
+```
+
+```{r}
+all_stars  |> 
+  summarise(n=n(),.by=Star_idx) |>
+  ggplot(aes(x=n)) +
+  geom_bar()
+```
+
+```{r}
+all_stars |>
+  summarise(n=sum(!is.na(planet_number)),.by = Star_idx) |>
+  ggplot(aes(x=n)) +
+  geom_bar()
+```
+
+```{r}
+all_stars |>
+  summarise(n=n_distinct(planet_number,na.rm=TRUE),.by=Star_idx) |>
+  ggplot(aes(x=n)) +
+  geom_bar()
+```
+
+
+
