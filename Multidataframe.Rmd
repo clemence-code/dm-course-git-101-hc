@@ -3,27 +3,51 @@ title: "Multidataframe"
 output: html_document
 date: "2025-11-04"
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+#| message: false
+here::i_am("dm-course-git-101-hc.Rproj")
+library(here)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+#| message: false
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(vroom)
 ```
 
-## Including Plots
+Tidy data
+1. A data frame contain only statistical units of a specific type
+2. Each row is a statistical unit
+A database = a collection of related dataframes
+Keys --> unique in the dataframe
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+## Data Loading
+```{r}
+planets <- vroom(here("data","LISTPLANETS.csv"))
+stars <- vroom(here("data","List_stars.csv"))
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+sum_to_earth <- 333000
+```
+
+## Planet oriented analyses
+We look for the planet that has the largest ratio between its mass and the mass of its star. We cannot do that using the planet data frame only, we need to join it with the stars dataframe.
+
+### Innerjoin
+In an inner join, we keep only matches between the two data frames (according to the `join_by` variables).
+```{r}
+planet_star <- inner_join(planets,stars,join_by(Star_idx))
+```
+
+```{r}
+planet_star |>
+  mutate(mass_ratio = MASS/`STAR MASS`*sum_to_earth) |>
+  slice_max(mass_ratio) |>
+  select(plnaet = p_name,star=star_name, mass_ratio)
+```
+
+
+
