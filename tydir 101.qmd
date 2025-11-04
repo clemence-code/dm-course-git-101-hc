@@ -144,3 +144,12 @@ dgroup |>
   pivot_wider(id_cols = cut,names_from = color, values_from = median_price)
 ```
 
+Missing data support
+```{r}
+set.seed(42)
+dgroup |>
+  slice_sample(n=25) |>
+  pivot_wider(id_cols = cut,names_from = color, values_from = count)
+```
+
+
